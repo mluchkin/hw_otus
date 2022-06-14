@@ -23,6 +23,9 @@ func Unpack(str string) (string, error) {
 			result += string(runes[i])
 			break
 		}
+		if unicode.IsSpace(runes[i]) {
+			return "", ErrInvalidString
+		}
 		if unicode.IsDigit(runes[i+1]) {
 			if unicode.IsDigit(runes[i+2]) {
 				return "", ErrInvalidString
