@@ -20,6 +20,9 @@ func Unpack(str string) (string, error) {
 	}
 	for i := 0; i < len(runes); i++ {
 		if i+1 == (len(runes)) {
+			if unicode.IsDigit(runes[i]) {
+				break
+			}
 			result += string(runes[i])
 			break
 		}
@@ -27,7 +30,7 @@ func Unpack(str string) (string, error) {
 			return "", ErrInvalidString
 		}
 		if unicode.IsDigit(runes[i+1]) {
-			if unicode.IsDigit(runes[i+2]) {
+			if i+2 != (len(runes)) && unicode.IsDigit(runes[i+2]) {
 				return "", ErrInvalidString
 			}
 			count, _ := strconv.Atoi(string(runes[i+1]))
