@@ -383,7 +383,7 @@ func Validate(v interface{}) error {
 		return ErrIsNotStruct
 	}
 
-	validators := make(map[string][]FieldValidator, 0)
+	validators := make(map[string][]FieldValidator)
 	for i := 0; i < r.NumField(); i++ {
 		structField := r.Type().Field(i)
 		fieldValue := r.Field(i)
